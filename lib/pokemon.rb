@@ -16,8 +16,10 @@ class Pokemon # scraping the info and adding it into database
 
     def self.find(id, db)# find methods are always class methods, bc we are searching through the whole class 
         # find method always take in argument of id
-        find_pokemon = db.execute("SELECT * FROM pokemon WHERE id=?", id).flatten # makes multiple arrays into 1 array
-        Pokemon.new(id: id, name: find_pokemon[1], type: find_pokemon[2], db: db) # expecting certain syntax when passing in info, need key and value
+        # 
+        found_pokemon = db.execute("SELECT * FROM pokemon WHERE id=?", id).flatten # makes multiple arrays into 1 array
+        Pokemon.new(id: id, name: found_pokemon[1], type: found_pokemon[2], db: db) # expecting certain syntax when passing in info, need key and value
+        # you can just pass in id and db since it's an argument in this method opposed to manually assigning like name & type
     end 
 
 end
